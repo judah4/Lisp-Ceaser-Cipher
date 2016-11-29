@@ -69,3 +69,33 @@
 (defun DecodeAtom (letter)
 	(NumToAtom (Rot (AtomToNum letter) 21) )
 )
+
+(defun PrintWords(words)
+	
+	(Cond ((null words) words)
+		((atom words) (format t "~a" words))
+		((listp (car words)) (CONCATENATE  (PrintWords (car words)) " " ) )
+		(T  (CONCATENATE (PrintWords (car words)) (PrintWords (cdr words)) )) )
+)
+
+(defun EncodeList (words)
+	(Cond ((null words) words)
+		((atom words) (list (EncodeAtom words)))
+		((listp (car words)) (append (list (EncodeList (car words) )) (EncodeList (cdr words))) )
+		(T  (append (EncodeList (car words)) (EncodeList (cdr words)) )) )
+) 
+
+(defun Encode (words)
+	(princ (EncodeList words))
+)
+
+(defun DecodeList (words)
+	(Cond ((null words) words)
+		((atom words) (list (DecodeAtom words)))
+		((listp (car words)) (append (list (DecodeList (car words) )) (DecodeList (cdr words))) )
+		(T  (append (DecodeList (car words)) (DecodeList (cdr words)) )) )
+)
+
+(defun Decode (words)
+	(princ (DecodeList words))
+)
