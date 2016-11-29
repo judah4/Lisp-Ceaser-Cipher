@@ -75,7 +75,7 @@
 	(Cond ((null words) (princ " "))
 		((atom words) (format t "~a" words))
 		;;((listp (car words)) (CONCATENATE  (PrintWords (car words)) (PrintWords (cdr words)) ) )
-		(T  (CONCATENATE (PrintWords (car words)) (PrintWords (cdr words)) )) )
+		(T  (eq (PrintWords (car words)) (PrintWords (cdr words)) )) )
 )
 
 (defun EncodeList (words)
@@ -86,7 +86,7 @@
 ) 
 
 (defun Encode (words)
-	(princ (EncodeList words))
+	(PrintWords (EncodeList words))
 )
 
 (defun DecodeList (words)
@@ -97,5 +97,5 @@
 )
 
 (defun Decode (words)
-	(princ (DecodeList words))
+	(PrintWords (DecodeList words))
 )
