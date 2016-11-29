@@ -72,9 +72,9 @@
 
 (defun PrintWords(words)
 	
-	(Cond ((null words) words)
+	(Cond ((null words) (princ " "))
 		((atom words) (format t "~a" words))
-		((listp (car words)) (CONCATENATE  (PrintWords (car words)) " " ) )
+		;;((listp (car words)) (CONCATENATE  (PrintWords (car words)) (PrintWords (cdr words)) ) )
 		(T  (CONCATENATE (PrintWords (car words)) (PrintWords (cdr words)) )) )
 )
 
